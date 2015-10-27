@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css"
+          href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8"
+            src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
+    <style>
+        tfoot {
+            display: table-header-group;
+        }
+    </style>
+</head>
+<body>
+<table width="400" length="100" border="1" id="table" class="display" cellspacing="0" width="100%">
+    <tr>
+        <th>Month</th>
+        <th>Savings</th>
+        <th>Expenses</th>
+        <th>Other</th>
+        <th>Sum</th>
+    </tr>
+    <tr>
+        <td>January</td>
+        <td>$100</td>
+        <td>$150</td>
+        <td>Other</td>
+        <td>Sum</td>
+    </tr>
+    <tr>
+        <td>February</td>
+        <td>$80</td>
+        <td>$96</td>
+        <td>Other</td>
+        <td>Sum</td>
+    </tr>
+    <tr>
+        <td>March</td>
+        <td>$60</td>
+        <td>$22</td>
+        <td>Other</td>
+        <td>Sum</td>
+    </tr>
+    <tr>
+        <td>April</td>
+        <td>$90</td>
+        <td>$123</td>
+        <td>Other</td>
+        <td>Sum</td>
+    </tr>
+</table>
+<script>
+    $(document).ready(function() {
+        // Kohandamine - lisa igasse aluse lahtrisse sisend
+        $('#example tfoot th').each( function () {
+            var title = $('#example thead th').eq( $(this).index() ).text();
+            $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+        } );
+        // Andmetabel
+        var table = $('#example').DataTable();
+        // Kohanda otsingule
+        table.columns().every( function () {
+            var that = this;
+            $( 'input', this.footer() ).on( 'keyup change', function () {
+                if ( that.search() !== this.value ) {
+                    that
+                            .search( this.value )
+                            .draw();
+                }
+            } );
+        } );
+    } );
+</script>
+</body>
+</html>
