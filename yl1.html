@@ -7,7 +7,8 @@
 </head>
 <body>
 
-<table width="400" length="100" border="1">
+<table id="sometable" width="400" length="100" border="1">
+    <thead>
     <tr>
         <th>Month</th>
         <th>Savings</th>
@@ -15,6 +16,8 @@
         <th>Other</th>
         <th>Sum</th>
     </tr>
+    </thead>
+    <tbody>
     <tr>
         <td>January</td>
         <td>$100</td>
@@ -42,11 +45,12 @@
         <td>$123</td>
         <td>Other</td>
         <td>Sum</td>
-    </tr>
+
+    </tbody>
 </table>
         <script>
         $(function(){
-            $("#example").dataTable();
+            $("#sometable").dataTable();
         })
         </script>
 </body>
